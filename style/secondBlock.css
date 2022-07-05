@@ -1,0 +1,63 @@
+.secondBlock{
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.secondBlock__currency{
+  width: 200px;
+  height: 206px;
+
+  border-radius: 0px;
+  border: 2px solid #33a2ff;
+
+  background-color: #33a2ff;
+
+  text-align: center;
+  color: black;
+  font-size: 30px;
+  color: white;
+  font-family: sans-serif;
+
+  cursor: pointer;
+}
+
+.secondBlock__option{
+  color: black;
+  background: white;
+}
+
+#secondBlock__amount{
+  width: 500px;
+  height: 200px;
+
+  font-size: 30px;
+  font-family: sans-serif;
+}
+
+/*media*/
+@media (max-width: 810px) {
+  .secondBlock__currency{
+    width: 100px;
+    height: 106px;
+  }
+
+  #secondBlock__amount{
+    width: 250px;
+    height: 100px;
+  }
+}
+
+@media (max-width: 400px) {
+  .secondBlock__currency{
+    width: 100px;
+    height: 56px;
+
+    font-size: 15px
+  }
+
+  #secondBlock__amount{
+    width: 125px;
+    height: 50px;
+  }
+}

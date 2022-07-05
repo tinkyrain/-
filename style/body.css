@@ -1,0 +1,19 @@
+*{
+  margin: 0;
+}
+
+body{
+  height: 100vh;
+
+  display: flex;
+  justify-content: space-evenly;
+  align-content: center;
+}
+
+/*media*/
+
+@media (max-width: 1780px) {
+  body{
+    flex-flow: column;
+  }
+}
