@@ -23,11 +23,30 @@ async function getData(){
 
 //Перевод валюты
 function convert(){
-  second__amount.value = ((parseFloat(firstBlock__amount.value) / rates[secondSelect.value].Value)*rates[secondSelect.value].Nominal).toFixed(4);
+  //Перевод в рубль
+  if(secondSelect.value === 'RUB'){
 
-  if(firstBlock__amount.value == '') secondBlock__amount.value = '';
+    second__amount.value = ((parseFloat(firstBlock__amount.value)*rates[firstSelect.value].Value)*rates[firstSelect.value].Nominal).toFixed(2);
+    if(firstBlock__amount.value == '') secondBlock__amount.value = '';
+
+  }
+
+  //Перевод из любой валюты, кроме рубля
+  if(firstSelect.value != 'RUB'){
+
+    second__amount.value = ((parseFloat(firstBlock__amount.value)*rates[firstSelect.value].Value/rates[firstSelect.value].Nominal/ rates[secondSelect.value].Value)*rates[secondSelect.value].Nominal).toFixed(2);
+    if(firstBlock__amount.value == '') secondBlock__amount.value = '';
+
+  } else {
+
+    //Перевод ТОЛЬКО из рубля
+    second__amount.value = ((parseFloat(firstBlock__amount.value) / rates[secondSelect.value].Value)*rates[secondSelect.value].Nominal).toFixed(2);
+    if(firstBlock__amount.value == '') secondBlock__amount.value = '';
+
+  }
 }
 
 //Слушатели изменений
 firstBlock__amount.oninput = convert;
 secondSelect.oninput = convert;
+firstSelect.oninput = convert;
