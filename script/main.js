@@ -19,6 +19,19 @@ async function getData(){
     rates.USD = result.Valute.USD;
     rates.EUR = result.Valute.EUR;
     rates.JPY = result.Valute.JPY;
+    rates.BYN = result.Valute.BYN;
+    rates.AUD = result.Valute.AUD;
+    rates.AZD = result.Valute.AZD;
+    rates.AMD = result.Valute.AMD;
+    rates.BGN = result.Valute.BGN;
+    rates.BRL = result.Valute.BRL;
+    rates.HUF = result.Valute.HUF;
+    rates.KRW = result.Valute.KRW;
+    rates.DKK = result.Valute.DKK;
+    rates.KZT = result.Valute.KZT;
+    rates.CNY = result.Valute.CNY;
+    rates.TRY = result.Valute.TRY;
+    rates.UAH = result.Valute.UAH;
 }
 
 //Перевод валюты
