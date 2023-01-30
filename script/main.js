@@ -10,46 +10,39 @@ const rates = {};
 //Регулярное выражение для удаления символов, кроме . и цифр
 const reg = /^\.|[^\d\.]/g;
 
-getData();
-
 //Получение данных
 async function getData(){
-    const response = await fetch('https://www.cbr-xml-daily.ru/daily_json.js');
+    const API = 'https://www.cbr-xml-daily.ru/daily_json.js';
+    //Получение данных с API
+    const response = await fetch(API);
     const data = await response.json();
     const result = await data;
 
+    //Занесение данных о валюте в rates
     rates.GBP = result.Valute.GBP;
     rates.USD = result.Valute.USD;
     rates.EUR = result.Valute.EUR;
     rates.JPY = result.Valute.JPY;
-    rates.BYN = result.Valute.BYN;
-    rates.AUD = result.Valute.AUD;
-    rates.AZD = result.Valute.AZD;
-    rates.AMD = result.Valute.AMD;
-    rates.BGN = result.Valute.BGN;
-    rates.BRL = result.Valute.BRL;
-    rates.HUF = result.Valute.HUF;
-    rates.KRW = result.Valute.KRW;
-    rates.DKK = result.Valute.DKK;
-    rates.KZT = result.Valute.KZT;
-    rates.CNY = result.Valute.CNY;
-    rates.TRY = result.Valute.TRY;
-    rates.UAH = result.Valute.UAH;
-
-    console.log(result)
 }
 
 //Перевод валюты
 function convert(){
+  //Удаление всех букв в input
+  firstBlock__amount.value = firstBlock__amount.value.replace(reg, '')
 
-  //Удаление символов из инпута
-  this.value = this.value.replace(reg, '');
+  let nominal = rates[secondSelect.value].Nominal,
+      valueAmount = rates[secondSelect.value].Value,
+      firstAmount = firstBlock__amount.value;
 
-  //Refactoring
+  second__amount.value = parseFloat((firstAmount/valueAmount*nominal)).toFixed(2);
+
+  //Отчистка поля
+  if(firstBlock__amount.value == '') secondBlock__amount.value = '';
 }
+
+getData();
 
 //Слушатели изменений
 firstBlock__amount.oninput = convert;
 secondSelect.oninput = convert;
 firstSelect.oninput = convert;
-
