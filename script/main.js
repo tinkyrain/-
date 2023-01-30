@@ -35,6 +35,8 @@ async function getData(){
     rates.CNY = result.Valute.CNY;
     rates.TRY = result.Valute.TRY;
     rates.UAH = result.Valute.UAH;
+
+    console.log(result)
 }
 
 //Перевод валюты
@@ -43,28 +45,7 @@ function convert(){
   //Удаление символов из инпута
   this.value = this.value.replace(reg, '');
 
-  //Перевод в рубль
-  if(secondSelect.value === 'RUB'){
-
-    second__amount.value = ((parseFloat(firstBlock__amount.value)*rates[firstSelect.value].Value)*rates[firstSelect.value].Nominal).toFixed(2);
-
-    if(firstBlock__amount.value == '') secondBlock__amount.value = '';
-
-  }
-
-  //Перевод из любой валюты, кроме рубля
-  if(firstSelect.value != 'RUB'){
-
-    second__amount.value = ((parseFloat(firstBlock__amount.value)*rates[firstSelect.value].Value/rates[firstSelect.value].Nominal/ rates[secondSelect.value].Value)*rates[secondSelect.value].Nominal).toFixed(2);
-    if(firstBlock__amount.value == '') secondBlock__amount.value = '';
-
-  } else {
-
-    //Перевод ТОЛЬКО из рубля
-    second__amount.value = ((parseFloat(firstBlock__amount.value) / rates[secondSelect.value].Value)*rates[secondSelect.value].Nominal).toFixed(2);
-    if(firstBlock__amount.value == '') secondBlock__amount.value = '';
-
-  }
+  //Refactoring
 }
 
 //Слушатели изменений
