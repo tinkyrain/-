@@ -25,16 +25,27 @@ async function getData(){
     rates.JPY = result.Valute.JPY;
 }
 
+function fromRub(){
+  second__amount.value = ((parseFloat(firstBlock__amount.value) / rates[secondSelect.value].Value)*rates[secondSelect.value].Nominal).toFixed(2);
+}
+
+function otherRates(){
+  second__amount.value = ((parseFloat(firstBlock__amount.value)*rates[firstSelect.value].Value/rates[firstSelect.value].Nominal/ rates[secondSelect.value].Value)*rates[secondSelect.value].Nominal).toFixed(2);
+}
+
+function inRub(){
+  second__amount.value = ((parseFloat(firstBlock__amount.value)*rates[firstSelect.value].Value)*rates[firstSelect.value].Nominal).toFixed(2);
+}
+
 //Перевод валюты
 function convert(){
   //Удаление всех букв в input
   firstBlock__amount.value = firstBlock__amount.value.replace(reg, '')
 
-  let nominal = rates[secondSelect.value].Nominal,
-      valueAmount = rates[secondSelect.value].Value,
-      firstAmount = firstBlock__amount.value;
+  if(firstSelect.value == 'RUB') fromRub();
+  if(firstSelect.value != 'RUB') otherRates();
+  if(secondSelect.value == 'RUB') inRub();
 
-  second__amount.value = parseFloat((firstAmount/valueAmount*nominal)).toFixed(2);
 
   //Отчистка поля
   if(firstBlock__amount.value == '') secondBlock__amount.value = '';
