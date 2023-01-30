@@ -7,6 +7,9 @@ const secondSelect = document.getElementById('Secondblock__Select');
 //Данные валюты
 const rates = {};
 
+//Регулярное выражение для удаления символов, кроме . и цифр
+const reg = /^\.|[^\d\.]/g;
+
 getData();
 
 //Получение данных
@@ -36,10 +39,15 @@ async function getData(){
 
 //Перевод валюты
 function convert(){
+
+  //Удаление символов из инпута
+  this.value = this.value.replace(reg, '');
+
   //Перевод в рубль
   if(secondSelect.value === 'RUB'){
 
     second__amount.value = ((parseFloat(firstBlock__amount.value)*rates[firstSelect.value].Value)*rates[firstSelect.value].Nominal).toFixed(2);
+
     if(firstBlock__amount.value == '') secondBlock__amount.value = '';
 
   }
@@ -63,3 +71,4 @@ function convert(){
 firstBlock__amount.oninput = convert;
 secondSelect.oninput = convert;
 firstSelect.oninput = convert;
+
