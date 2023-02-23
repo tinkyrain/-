@@ -27,28 +27,41 @@ async function getData(){
 
 function fromRub(){
   second__amount.value = ((parseFloat(firstBlock__amount.value) / rates[secondSelect.value].Value)*rates[secondSelect.value].Nominal).toFixed(2);
+  if(!firstBlock__amount.value.trim()) secondBlock__amount.value = '';
 }
 
 function otherRates(){
   second__amount.value = ((parseFloat(firstBlock__amount.value)*rates[firstSelect.value].Value/rates[firstSelect.value].Nominal/ rates[secondSelect.value].Value)*rates[secondSelect.value].Nominal).toFixed(2);
+  if(!firstBlock__amount.value.trim()) secondBlock__amount.value = '';
 }
 
 function inRub(){
   second__amount.value = ((parseFloat(firstBlock__amount.value)*rates[firstSelect.value].Value)*rates[firstSelect.value].Nominal).toFixed(2);
+  if(!firstBlock__amount.value.trim()) secondBlock__amount.value = '';
 }
 
 //Перевод валюты
 function convert(){
   //Удаление всех букв в input
-  firstBlock__amount.value = firstBlock__amount.value.replace(reg, '')
-
-  if(firstSelect.value == 'RUB') fromRub();
-  if(firstSelect.value != 'RUB') otherRates();
-  if(secondSelect.value == 'RUB') inRub();
-
-
-  //Отчистка поля
-  if(firstBlock__amount.value == '') secondBlock__amount.value = '';
+  firstBlock__amount.value = firstBlock__amount.value.replace(reg, '');
+  second__amount.value = second__amount.value.replace(reg, '');
+  
+  if(firstSelect.value == 'RUB' && secondSelect.value == 'RUB'){
+    secondBlock__amount.value = firstBlock__amount.value; 
+    return ;
+  }
+  if(firstSelect.value == 'RUB'){
+    fromRub();
+    return ;
+  }
+  if(secondSelect.value == 'RUB'){
+    inRub();
+    return ;
+  }
+  if(firstSelect.value != 'RUB'){
+    otherRates();
+    return ;
+  }
 }
 
 getData();
