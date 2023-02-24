@@ -26,7 +26,7 @@ async function getData(){
 }
 
 function fromRub(){
-  second__amount.value = ((parseFloat(firstBlock__amount.value) / rates[secondSelect.value].Value)*rates[secondSelect.value].Nominal).toFixed(2);
+  second__amount.value = ((parseFloat(firstBlock__amount.value) / rates[secondSelect.value].Value)).toFixed(2);
   if(!firstBlock__amount.value.trim()) secondBlock__amount.value = '';
 }
 
